@@ -18,6 +18,6 @@ public class Player : MonoBehaviour
     private void Update()
     {
         float rotation = rotationAction.ReadValue<float>();
-        transform.Rotate( new Vector3(0, rotation * rotationSpeed, 0));
+        rb.angularVelocity = rotation * rotationSpeed * Vector3.up;
     }
 }
