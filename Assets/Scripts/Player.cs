@@ -20,9 +20,10 @@ public class Player : MonoBehaviour
     private void Update()
     {
         float rotation = rotationAction.ReadValue<float>();
-        rb.angularVelocity = rotation * rotationSpeed * Vector3.up;
-
+        //rb.angularVelocity = rotation * rotationSpeed * Vector3.up;
+        transform.Rotate(Vector3.up, rotation * rotationSpeed * Time.deltaTime);
+        
         Vector2 move = movementAction.ReadValue<Vector2>();
-        rb.linearVelocity = (transform.right * move.x + transform.forward * move.y) * movementSpeed * Time.deltaTime;
+        rb.linearVelocity = (transform.right * move.x + transform.forward * move.y) * movementSpeed * Time.deltaTime + new Vector3(0, rb.linearVelocity.y, 0);
     }
 }
