@@ -6,31 +6,24 @@ using UnityEngine.InputSystem;
 using UnityEditor;
 #endif
 
-public class Player : MonoBehaviour
+public class Player : Killable
 {
     public float movementSpeed;
     [SerializeField] private float rotationSpeed;
     private Rigidbody rb;
     public InputAction rotationAction;
     public InputAction movementAction;
+    
+
+    private Shooter shooter;
 
     private void Awake()
     {
+        shooter = GetComponent<Shooter>();
         rb = GetComponent<Rigidbody>();
         rotationAction.Enable();
         movementAction.Enable();
         Cursor.lockState = CursorLockMode.Locked;
-    }
-
-    void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Enemy"))
-        {
-#if UNITY_EDITOR
-            EditorApplication.isPlaying = false;
-#endif
-            Application.Quit();
-        }
     }
 
     private void Update()
@@ -41,5 +34,14 @@ public class Player : MonoBehaviour
         
         Vector2 move = movementAction.ReadValue<Vector2>();
         rb.linearVelocity = (transform.right * move.x + transform.forward * move.y) * movementSpeed * Time.deltaTime + new Vector3(0, rb.linearVelocity.y, 0);
+        shooter.TryShoot("Enemy");
+    }
+    
+    public override void die()
+    {
+#if UNITY_EDITOR
+            EditorApplication.isPlaying = false;
+#endif
+            Application.Quit();
     }
 }

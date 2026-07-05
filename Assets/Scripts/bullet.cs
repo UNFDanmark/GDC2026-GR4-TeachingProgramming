@@ -3,11 +3,13 @@ using UnityEngine;
 
 public class bullet : MonoBehaviour
 {
+
+    public string tagToDestry;
     void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag("Enemy"))
+        if (other.gameObject.CompareTag(tagToDestry))
         {
-            Destroy(other.gameObject);
+            other.gameObject.GetComponent<Killable>().die();
             Destroy(gameObject);
         }
     }

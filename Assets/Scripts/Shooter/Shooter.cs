@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class SchoolShooter : MonoBehaviour
+public abstract class Shooter : MonoBehaviour
 {
     public GameObject bulletPrefab;
     public float cooldown;
@@ -10,13 +10,14 @@ public class SchoolShooter : MonoBehaviour
     public float bulletSpeed;
     public Transform spawnPosition;
     private bool canShoot = true;
-    public InputAction shootAction;
+    string tagToDestroy;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     IEnumerator ShootRoutine()
     {
         canShoot = false;
         GameObject b = Instantiate(bulletPrefab, spawnPosition.position, transform.rotation);
+        b.GetComponent<bullet>().tagToDestry = tagToDestroy;
         Rigidbody rb = b.GetComponent<Rigidbody>();
         rb.AddForce(transform.forward * bulletSpeed, ForceMode.Impulse);
         StartCoroutine(despawn(b));
@@ -29,15 +30,13 @@ public class SchoolShooter : MonoBehaviour
         yield return new WaitForSeconds(bulletDiesAfter);
         Destroy(go);
     }
-    
-    void Start()
-    {
-        shootAction.Enable();
-    }
 
     // Update is called once per frame
-    void Update()
+    public void TryShoot(string tagToDestroy)
     {
-        if (shootAction.IsPressed() && canShoot) StartCoroutine(ShootRoutine());
+        this.tagToDestroy = tagToDestroy;
+        if (ShootAction() && canShoot) StartCoroutine(ShootRoutine());
     }
+
+    protected abstract bool ShootAction();
 }
