@@ -127,6 +127,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Coin
   rotationSpeed: 1
+  movementSpeed: 1
+  moveTime: 0.5
 --- !u!54 &-1426496844975081368
 Rigidbody:
   m_ObjectHideFlags: 0
