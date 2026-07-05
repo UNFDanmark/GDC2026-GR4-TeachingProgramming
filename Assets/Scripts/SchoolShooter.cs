@@ -13,7 +13,7 @@ public class SchoolShooter : MonoBehaviour
     public InputAction shootAction;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    IEnumerator shoot()
+    IEnumerator ShootRoutine()
     {
         canShoot = false;
         GameObject b = Instantiate(bulletPrefab, spawnPosition.position, transform.rotation);
@@ -38,6 +38,6 @@ public class SchoolShooter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (shootAction.IsPressed() && canShoot) StartCoroutine(shoot());
+        if (shootAction.IsPressed() && canShoot) StartCoroutine(ShootRoutine());
     }
 }

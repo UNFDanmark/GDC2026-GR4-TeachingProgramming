@@ -1,5 +1,10 @@
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 public class Player : MonoBehaviour
 {
@@ -15,6 +20,17 @@ public class Player : MonoBehaviour
         rotationAction.Enable();
         movementAction.Enable();
         Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+#if UNITY_EDITOR
+            EditorApplication.isPlaying = false;
+#endif
+            Application.Quit();
+        }
     }
 
     private void Update()
