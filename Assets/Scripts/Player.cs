@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -14,6 +15,8 @@ public class Player : Killable
     private Rigidbody rb;
     //public InputAction rotationAction;
     public InputAction movementAction;
+    public int health = 3;
+    public TextMeshProUGUI healthText;
 
     InputShooter shooterInput;
 
@@ -47,6 +50,17 @@ public class Player : Killable
     
     public override void die()
     {
+        if (health > 1)
+        {
+            health--;
+            healthText.text = "";
+            for (int i = 0; i < health; i++)
+            {
+                healthText.text = healthText.text + "liv ";
+            }
+            return;
+        }
+        
 #if UNITY_EDITOR
             EditorApplication.isPlaying = false;
 #endif

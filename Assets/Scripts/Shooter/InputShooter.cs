@@ -7,6 +7,7 @@ public class InputShooter : Shooter
     
     void Start()
     {
+        sauce = GetComponent<AudioSource>();
         shootAction.Enable();
     }
 
