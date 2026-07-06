@@ -1,2 +1,15 @@
 fileFormatVersion: 2
 guid: 572dddedcda618b459614251101efd76
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - bulletPrefab: {instanceID: 0}
+  - spawnPosition: {instanceID: 0}
+  - clip: {fileID: 8300000, guid: abf4195dafaf76c479f346ed47d93c4a, type: 3}
+  - sauce: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

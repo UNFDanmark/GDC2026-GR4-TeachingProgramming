@@ -9,10 +9,15 @@ using UnityEditor;
 public class Player : Killable
 {
     public float movementSpeed;
-    [SerializeField] private float rotationSpeed;
+    public float movementSpeedWhileShooting;
+    //[SerializeField] private float rotationSpeed;
     private Rigidbody rb;
-    public InputAction rotationAction;
+    //public InputAction rotationAction;
     public InputAction movementAction;
+
+    InputShooter shooterInput;
+
+    public Animator animator;
     
 
     private Shooter shooter;
@@ -21,20 +26,23 @@ public class Player : Killable
     {
         shooter = GetComponent<Shooter>();
         rb = GetComponent<Rigidbody>();
-        rotationAction.Enable();
+        shooterInput = GetComponent<InputShooter>();
+        //rotationAction.Enable();
         movementAction.Enable();
         Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void Update()
     {
-        float rotation = rotationAction.ReadValue<float>();
-        //rb.angularVelocity = rotation * rotationSpeed * Vector3.up;
-        transform.Rotate(Vector3.up, rotation * rotationSpeed * Time.deltaTime);
+        //float rotation = rotationAction.ReadValue<float>();
+        
+        //transform.Rotate(Vector3.up, rotation * rotationSpeed * Time.deltaTime);
         
         Vector2 move = movementAction.ReadValue<Vector2>();
+        if(shooterInput.shootAction.IsPressed()) rb.linearVelocity = (transform.right * move.x + transform.forward * move.y) * movementSpeedWhileShooting * Time.deltaTime + new Vector3(0, rb.linearVelocity.y, 0);
         rb.linearVelocity = (transform.right * move.x + transform.forward * move.y) * movementSpeed * Time.deltaTime + new Vector3(0, rb.linearVelocity.y, 0);
-        shooter.TryShoot("Enemy");
+        animator.SetFloat("speed", rb.linearVelocity.magnitude);
+        shooter.TryShoot("Enemy", this);
     }
     
     public override void die()

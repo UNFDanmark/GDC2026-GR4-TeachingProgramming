@@ -22,6 +22,6 @@ public class Enemy : Killable
     {
         navMeshAgent.SetDestination(p.transform.position);
 
-        if (playerDetector.CanShoot()) shooter.TryShoot("Player");
+        if (playerDetector.CanShoot()) shooter.TryShoot("Player", null);
     }
 }

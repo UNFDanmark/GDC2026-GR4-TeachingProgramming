@@ -228,7 +228,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.70712, y: -1, z: 0.70712}
-  m_LocalScale: {x: 3.14, y: 3.14, z: 3.14}
+  m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -277,6 +277,7 @@ GameObject:
   - component: {fileID: 346728363}
   - component: {fileID: 346728362}
   - component: {fileID: 346728365}
+  - component: {fileID: 346728366}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -352,7 +353,7 @@ Transform:
   m_GameObject: {fileID: 346728361}
   serializedVersion: 2
   m_LocalRotation: {x: 0.30070576, y: 0, z: 0, w: 0.953717}
-  m_LocalPosition: {x: 0, y: 3.5, z: -5}
+  m_LocalPosition: {x: 1, y: 2, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -402,6 +403,87 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!114 &346728366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 346728361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4260e14c55da69498e12257ccf93e83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraController
+  yRotationAction:
+    m_Name: Y Rotation
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 95867663-36fc-4781-9d10-45e9b34883b1
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 1D Axis
+      m_Id: 9c012714-1f0b-4ed9-8a0b-05eb1e35337e
+      m_Path: 1DAxis
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Y Rotation
+      m_Flags: 4
+    - m_Name: negative
+      m_Id: 5b6df065-2147-4957-9aaf-a04813556f2a
+      m_Path: <Mouse>/delta/up
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Y Rotation
+      m_Flags: 8
+    - m_Name: positive
+      m_Id: 5a5668b0-4a13-49db-af75-97c84721d377
+      m_Path: <Mouse>/delta/down
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Y Rotation
+      m_Flags: 8
+    m_Flags: 0
+  xRotationAction:
+    m_Name: X Rotation
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 681a0f8c-ce99-4c00-bd38-8bd3d74ea141
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 1D Axis
+      m_Id: 96bcc8e6-aff5-4bac-b06d-233146871537
+      m_Path: 1DAxis
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: X Rotation
+      m_Flags: 4
+    - m_Name: negative
+      m_Id: 140883bd-14ac-419a-9736-9389afc4aadf
+      m_Path: <Mouse>/delta/left
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: X Rotation
+      m_Flags: 8
+    - m_Name: positive
+      m_Id: 5213faab-0305-45c0-8700-cd840064bfb0
+      m_Path: <Mouse>/delta/right
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: X Rotation
+      m_Flags: 8
+    m_Flags: 0
+  sensitivityX: 0.2
+  sensitivityY: 0.2
+  horizontalDegreesOfFreedom: 70
 --- !u!1001 &714872904
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -807,6 +889,7 @@ GameObject:
   - component: {fileID: 1528279101}
   - component: {fileID: 1528279100}
   - component: {fileID: 1528279106}
+  - component: {fileID: 1528279107}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -827,40 +910,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
   movementSpeed: 1000
-  rotationSpeed: 4
-  rotationAction:
-    m_Name: Rotation
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 99b74986-cd3e-44b2-9e11-e57e04ea4579
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 1D Axis
-      m_Id: 3cafa741-59a1-4205-8f85-602e96a3d4c0
-      m_Path: 1DAxis
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Rotation
-      m_Flags: 4
-    - m_Name: negative
-      m_Id: b687bcc6-785f-42a3-8e12-a2a8c0228779
-      m_Path: <Mouse>/delta/left
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Rotation
-      m_Flags: 8
-    - m_Name: positive
-      m_Id: e94c0c8f-6d8a-4319-898e-f1093eccb3e2
-      m_Path: <Mouse>/delta/right
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Rotation
-      m_Flags: 8
-    m_Flags: 0
+  movementSpeedWhileShooting: 400
   movementAction:
     m_Name: Movement
     m_Type: 0
@@ -910,6 +960,7 @@ MonoBehaviour:
       m_Action: Movement
       m_Flags: 8
     m_Flags: 0
+  animator: {fileID: 1493662752}
 --- !u!54 &1528279101
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -995,6 +1046,8 @@ MonoBehaviour:
   bulletDiesAfter: 10
   bulletSpeed: 25
   spawnPosition: {fileID: 2142453389}
+  clip: {fileID: 8300000, guid: abf4195dafaf76c479f346ed47d93c4a, type: 3}
+  sauce: {fileID: 0}
   shootAction:
     m_Name: Shoot
     m_Type: 0
@@ -1012,6 +1065,103 @@ MonoBehaviour:
       m_Action: Shoot
       m_Flags: 0
     m_Flags: 0
+--- !u!82 &1528279107
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1528279099}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &2142453388
 GameObject:
   m_ObjectHideFlags: 0
